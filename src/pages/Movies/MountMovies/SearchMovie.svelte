@@ -1,17 +1,17 @@
 <script>
 import { each } from 'svelte/internal';
-import { storeMovie } from '../../../store';
+import { storeMovie, INITIAL_STATE } from '../../../store';
 
   import api from '../../../services/api';
   let term = '';
 
   $: if (!term) {
-    storeMovie.set([])
+    storeMovie.set({...INITIAL_STATE})
   }
 
   async function handleSubmit() {
     const response = await api.get(`/search/movie?query=${term}`);
-    storeMovie.set(response.data.results.filter(m => m.backdrop_path !== null))
+    storeMovie.set({...INITIAL_STATE, movies: response.data.results.filter(m => m.backdrop_path !== null),wasSearched:true})
   }
 </script>
 
@@ -25,6 +25,7 @@ import { storeMovie } from '../../../store';
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 2rem;
   }
 
   input {
@@ -42,7 +43,7 @@ import { storeMovie } from '../../../store';
 
   button {
     border: none;
-    background-color: #333;
+    background-color: #4b4fe8;
     color: #fff;
     height: 32px;
     border-radius: 5px;

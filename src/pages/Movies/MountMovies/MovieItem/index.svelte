@@ -7,11 +7,11 @@
     <img src={`https://image.tmdb.org/t/p/original/${objMovie.backdrop_path}`} alt="">
   </div>
   <div class="content">
-    <p>{objMovie.title}</p>
-    <p>estrelas: {objMovie.vote_average}</p>
-    <p>votos: {objMovie.vote_count}</p>
-    <p>data: {new Date(objMovie.release_date).toLocaleDateString()}</p>
-    <p class="overview">overview: {objMovie.overview}</p>
+    <p><strong>{objMovie.title}</strong></p>
+    <p><strong>estrelas:</strong> {objMovie.vote_average}</p>
+    <p><strong>votos:</strong> {objMovie.vote_count}</p>
+    <p><strong>data:</strong> {new Date(objMovie.release_date).toLocaleDateString()}</p>
+    <p class="overview"><strong>overview:</strong> {objMovie.overview}</p>
   </div>
 </div>
 
@@ -38,6 +38,11 @@
     max-height: 60px;
     overflow: hidden;
     min-height: 60px;
+  }
+
+  .content p:first-child{
+    font-size: 2rem;
+    color: #8c0808;
   }
 
   @media only screen and (max-width: 900px) {
