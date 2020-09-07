@@ -1,5 +1,5 @@
 <script>
-	import Movies from './pages/Movies.svelte'
+	import Movies from './pages/Movies/index.svelte'
 </script>
 
 <main>

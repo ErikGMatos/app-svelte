@@ -1,8 +1,8 @@
 <script>
 import { each } from 'svelte/internal';
-import { storeMovie } from '../../store';
+import { storeMovie } from '../../../store';
 
-  import api from '../../services/api';
+  import api from '../../../services/api';
   let term = '';
 
   async function handleSubmit() {

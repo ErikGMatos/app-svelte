@@ -1,5 +1,5 @@
 <script>
-  import { storeMovie } from '../../store'
+  import { storeMovie } from '../../../store';
 </script>
 
 {#each $storeMovie as movie}
