@@ -5,9 +5,13 @@ import { storeMovie } from '../../../store';
   import api from '../../../services/api';
   let term = '';
 
+  $: if (!term) {
+    storeMovie.set([])
+  }
+
   async function handleSubmit() {
     const response = await api.get(`/search/movie?query=${term}`);
-    storeMovie.set(response.data.results)
+    storeMovie.set(response.data.results.filter(m => m.backdrop_path !== null))
   }
 </script>
 
@@ -33,7 +37,6 @@ import { storeMovie } from '../../../store';
   }
 
   input::placeholder{
-    font-size: 1rem;
     color:rgba(0,0,0,.3)
   }
 
