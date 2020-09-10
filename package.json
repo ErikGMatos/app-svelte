@@ -9,12 +9,11 @@
     }
   },
   "lint-staged": {
-    "*.{svelte|js}": [
-      "eslint  --fix",
-      "prettier --write",
-      "stylelint --fix",
-      "cross-env CI=true yarn test --bail --findRelatedTests",
-      "git add"
+    "*.{svelte}": [
+      "yarn lint:prettier"
+    ],
+    "*.{js}": [
+      "yarn lint:eslint"
     ],
     "*.{scss}": [
       "yarn lint:stylelint"
