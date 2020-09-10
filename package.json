@@ -2,22 +2,66 @@
   "name": "svelte-app",
   "version": "1.0.0",
   "license": "ISC",
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{svelte|js}": [
+      "eslint  --fix",
+      "prettier --write",
+      "stylelint --fix",
+      "cross-env CI=true yarn test --bail --findRelatedTests",
+      "git add"
+    ],
+    "*.{scss}": [
+      "yarn lint:stylelint"
+    ]
+  },
   "scripts": {
     "dev": "cross-env webpack-dev-server --open --mode development --config webpack/webpack.dev.js",
     "build": "webpack -p --mode production --config webpack/webpack.prod.js",
-    "start": "sirv dist/source"
+    "start": "sirv dist/source",
+    "lint": "npm-run-all -c lint:*",
+    "lint:eslint": "eslint src/*.js",
+    "lint:stylelint": "stylelint src/*.scss",
+    "lint:prettier": "prettier --check src/*.{js,scss}",
+    "format": "npm-run-all -c format:*",
+    "format:eslint": "eslint --fix src/*.js",
+    "format:stylelint": "stylelint --fix src/*.scss",
+    "format:prettier": "prettier --write src/*.{js,scss,svelte}"
   },
   "devDependencies": {
+    "@commitlint/cli": "^9.1.2",
     "axios": "^0.20.0",
+    "babel-eslint": "^10.1.0",
     "clean-webpack-plugin": "^3.0.0",
+    "commitlint-config-rocketseat": "^0.0.1",
     "cross-env": "^7.0.2",
     "css-loader": "^4.2.2",
+    "eslint": "^7.8.1",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-svelte3": "^2.7.3",
     "html-webpack-plugin": "^4.4.1",
+    "husky": "^4.3.0",
+    "lint-staged": "^10.3.0",
     "mini-css-extract-plugin": "^0.11.0",
+    "node-sass": "^4.14.1",
+    "npm-run-all": "^4.1.5",
     "optimize-css-assets-webpack-plugin": "^5.0.4",
     "style-loader": "^1.2.1",
+    "stylelint": "^13.7.0",
+    "stylelint-config-standard": "^20.0.0",
+    "stylelint-order": "^4.1.0",
+    "stylelint-scss": "^3.18.0",
     "svelte": "^3.24.1",
     "svelte-loader": "^2.13.6",
+    "svelte-preprocess": "^4.2.1",
     "terser-webpack-plugin": "^4.1.0",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",

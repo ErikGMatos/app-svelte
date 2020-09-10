@@ -15,8 +15,8 @@ module.exports = {
         use: {
           loader: 'svelte-loader',
           options: {
+            preprocess: require('svelte-preprocess')({ scss: true }),
             emitCss: true,
-            // hotReload: true
           },
         },
       },

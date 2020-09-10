@@ -2,30 +2,16 @@
   export let objMovie;
 </script>
 
-<div class="container">
-  <div class="card">
-    <img src={`https://image.tmdb.org/t/p/original/${objMovie.backdrop_path}`} alt="">
-  </div>
-  <div class="content">
-    <p><strong>{objMovie.title}</strong></p>
-    <p><strong>estrelas:</strong> {objMovie.vote_average}</p>
-    <p><strong>votos:</strong> {objMovie.vote_count}</p>
-    <p><strong>data:</strong> {new Date(objMovie.release_date).toLocaleDateString()}</p>
-    <p class="overview"><strong>overview:</strong> {objMovie.overview}</p>
-  </div>
-</div>
-
-
 <style>
   .container {
-    font-size: 1.6rem;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
     width: 33%;
-    padding: 10px;
     margin-bottom: 16px;
+    padding: 10px;
+    font-size: 1.6rem;
   }
 
   img {
@@ -35,14 +21,14 @@
   }
 
   .overview {
-    max-height: 60px;
     overflow: hidden;
     min-height: 60px;
+    max-height: 60px;
   }
 
-  .content p:first-child{
-    font-size: 2rem;
+  .content p:first-child {
     color: #8c0808;
+    font-size: 2rem;
   }
 
   @media only screen and (max-width: 900px) {
@@ -56,5 +42,22 @@
       width: 100%;
     }
   }
-
 </style>
+
+<div class="container">
+  <div class="card">
+    <img
+      src={`https://image.tmdb.org/t/p/original/${objMovie.backdrop_path}`}
+      alt="" />
+  </div>
+  <div class="content">
+    <p><strong>{objMovie.title}</strong></p>
+    <p><strong>estrelas:</strong> {objMovie.vote_average}</p>
+    <p><strong>votos:</strong> {objMovie.vote_count}</p>
+    <p>
+      <strong>data:</strong>
+      {new Date(objMovie.release_date).toLocaleDateString()}
+    </p>
+    <p class="overview"><strong>overview:</strong> {objMovie.overview}</p>
+  </div>
+</div>
