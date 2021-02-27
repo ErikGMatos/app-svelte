@@ -22,7 +22,6 @@
     text-align: center;
   }
 </style>
-
 <div>
   {#if $storeMovie.wasSearched && !$storeMovie.movies.length}
     <p>Nenhum filme encontrado :(</p>
@@ -31,3 +30,4 @@
     <MovieItem objMovie={movie} />
   {/each}
 </div>
+
